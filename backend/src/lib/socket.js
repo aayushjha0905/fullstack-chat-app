@@ -5,10 +5,17 @@ import express from "express";
 const app = express();
 const server = http.createServer(app);
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://fullstack-chat-app-beige.vercel.app",
+  "https://fullstack-chat-gvab39l6j-aayushjha0905s-projects.vercel.app",
+];
+
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", process.env.CLIENT_URL],
+    origin: allowedOrigins,
     credentials: true,
+    methods: ["GET", "POST"],
   },
 });
 
